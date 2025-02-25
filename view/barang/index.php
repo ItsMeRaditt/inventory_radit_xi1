@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -46,7 +47,7 @@
 </nav>
     <div class="container">
     <h1>MENU XEGAA CAFFE</h1>
-    <a class="btn btn-primary" href="view_tambah.php" role="button">Tambah menu</a>
+    <a class="btn btn-primary" href="view_tambah.php" role="button"><i class="fa-solid fa-plus"></i>Tambah menu</a>
     <br></br>
     <table class="table table-dark table-striped">
   <thead>
@@ -75,8 +76,8 @@
                     <td><?php echo $result['stok']?></td>
                     <td><?php echo $result['id_jenis']?></td>
                     <td>
-                    <a class="btn btn-info" href="#" role="button">EDIT</a>
-                    <a class="btn btn-warning" href="#" role="button">HAPUS</a>
+                    <a class="btn btn-info" href="view_edit.php?kode_barang=<?php echo $result['kode_barang']?>" role="button"><i class="fa-solid fa-pen-to-square"></i>EDIT</a>
+                    <a class="btn btn-warning" href="hapus.php?kode_barang=<?php echo $result ['kode_barang']?>" onclick="return confirm('Kamu yakin kah?')" role="button"><i class="fa-solid fa-trash"></i>HAPUS</a>
                     </td>
                 </tr>
                 <?php

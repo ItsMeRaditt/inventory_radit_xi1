@@ -46,42 +46,33 @@
   </div>
 </nav>
     <div class="container">
-    <h1>JENIS MENU XEGA CAFFE</h1>
-    <a class="btn btn-primary" href="view_tambah.php" role="button"><i class="fa-solid fa-plus"></i>Tambah jenis</a>
+    <h1>TAMBAH MENU</h1>
     <br></br>
-    <table class="table table-dark table-striped">
-  <thead>
-    <tr>
-      <th scope="col">NO</th>
-      <th scope="col">ID JENIS</th>
-      <th scope="col">NAMA JENIS</th>
-      <th scope="col">AKSI</th>
-    </tr>
-  </thead>
-  <?php 
-        include '../../config/koneksi.php';
-        $query = mysqli_query($conn, "SELECT * FROM jenis");
-        $no=1;
-        if(mysqli_num_rows($query)){
-            while($result=mysqli_fetch_assoc($query)){
-                ?>
-                <tr>
-                    <td><?php echo $no;?></td>
-                    <td><?php echo $result['id_jenis']?></td>
-                    <td><?php echo $result['nama_jenis']?></td>
-                    <td>
-                    <a class="btn btn-info" href="view_edit.php?id_jenis=<?php echo $result['id_jenis']?>" role="button"><i class="fa-solid fa-pen-to-square"></i>EDIT</a>
-                    <a class="btn btn-warning" href="hapus.php?id_jenis=<?php echo $result ['id_jenis']?>" onclick="return confirm('Kamu yakin kah?')" role="button"><i class="fa-solid fa-trash"></i>HAPUS</a>
-                    </td>
-                </tr>
-                <?php
-                $no++;
-            }
-        } else{
-            echo "Data kosong";
-        }
-        ?>
-</table>
+    <?php
+    include '../../config/koneksi.php';
+    $kode_barang = $_GET['kode_barang'];
+    $query = mysqli_query($conn, "SELECT * FROM barang WHERE kode_barang='$kode_barang'");
+    $result = mysqli_fetch_array($query);
+    ?>
+  <form action="proses_edit.php?kode_barang=<?php echo $result['kode_barang']?>" method="post">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">KODE BARANG</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="kode_barang" value="<?php echo $result['kode_barang']?>">
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">NAMA BARANG</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="nama_barang" value="<?php echo $result['nama_barang']?>">
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">HARGA</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="harga" value="<?php echo $result['harga']?>">
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">STOK</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="stok" value="<?php echo $result['stok']?>">
+    <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">ID JENIS</label>
+    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="id_jenis" value="<?php echo $result['id_jenis']?>">
+    <br><br>
+  <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane"></i>Submit</button>
+</form>
     </div>
     
 </body>
